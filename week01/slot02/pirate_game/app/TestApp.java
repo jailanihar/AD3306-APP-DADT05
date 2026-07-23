@@ -8,11 +8,13 @@ public class TestApp {
         // pirate1.name = "Antah";
         Pirate pirate2 = new Pirate("Berantah", 5);
         // pirate2.name = "Berantah";
-        System.out.println(pirate1.name + " " + pirate1.health);
-        System.out.println(pirate2.name + " " + pirate2.health);
+        // System.out.println(pirate1.name + " " + pirate1.health);
+        // System.out.println(pirate2.name + " " + pirate2.health);
         
-        pirate1.health = -10;
-        System.out.println(pirate1.name + " " + pirate1.health);
-        System.out.println(pirate2.name + " " + pirate2.health);
-    }    
+        pirate1.setHealth(-10);
+        System.out.println(pirate1.getName() + " " + pirate1.getHealth());
+        System.out.println(pirate2.getName() + " " + pirate2.getHealth());
+        System.out.println(pirate1);
+        System.out.println(pirate2);
+    }
 }
