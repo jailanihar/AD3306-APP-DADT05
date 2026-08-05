@@ -1,7 +1,7 @@
 package pirate_game.app;
 
 import pirate_game.game_api.Pirate;
-import pirate_game.game_api.weapons.Weapon;
+import pirate_game.game_api.weapons.*;
 import pirate_game.game_api.Map;
 
 public class TestApp {
@@ -14,7 +14,7 @@ public class TestApp {
         System.out.println(map);
 
         Pirate abuPirate = map.selectPirate(2, 3);
-        abuPirate.equipWeapon(new Weapon(4));
+        abuPirate.equipWeapon(new Axe(4));
         map.movePirateLeft(1, 3);
         map.movePirateLeft(2, 3);
         System.out.println(map);
