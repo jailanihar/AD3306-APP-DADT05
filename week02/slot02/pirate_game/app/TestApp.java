@@ -12,8 +12,20 @@ public class TestApp {
         map.addPirate(0, 5, new Pirate("Curi", 6));
         System.out.println(map);
 
-        map.addPirate(10, -1, new Pirate("Daging", 4));
-        map.addPirate(0, 5, null);
+        map.selectPirate(0, 5).attackPirate(map.selectPirate(2, 3));
+        Pirate curi = map.selectPirate(0, 5);
+        Pirate abu = map.selectPirate(2, -1);
+        curi.attackPirate(abu);
+        System.out.println(map);
+
+        map.movePirate(0, 5, 0, 2);
+        System.out.println(map);
+
+        map.movePirate(0, 2, 2, 3);
+        map.movePirate(0, 2, 2, 3);
+        map.movePirate(0, 2, 2, 3);
+        map.movePirate(0, 2, 2, 3);
+        map.movePirate(0, 2, 2, 3);
         System.out.println(map);
     }
 }

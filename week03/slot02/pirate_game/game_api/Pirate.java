@@ -1,5 +1,7 @@
 package pirate_game.game_api;
 
+import pirate_game.game_api.weapons.Weapon;
+
 public class Pirate {
 
     // Constant Class Variable
@@ -11,6 +13,7 @@ public class Pirate {
     private String name;
     private int health;
     private int defence = 0;
+    private Weapon weapon;
 
     public Pirate() {
         this(null, DEFAULT_HEALTH);
@@ -35,9 +38,27 @@ public class Pirate {
     }
 
     public void attackPirate(Pirate otherPirate) {
-        if(otherPirate != null) {
-            otherPirate.health--;
+        if(otherPirate != null && otherPirate != this) {
+            if(weapon != null) {
+                int damage = weapon.doDamage(otherPirate);
+                otherPirate.health = otherPirate.health - damage;
+            } else {
+                if(otherPirate.defence < 1) {
+                    otherPirate.health--;
+                }
+            }
+            // otherPirate.health--;
         }
+    }
+
+    public void equipWeapon(Weapon weapon) {
+        if(weapon != null) {
+            this.weapon = weapon;
+        }
+    }
+
+    public void unEquipWeapon() {
+        weapon = null;
     }
 
     public int getDefence() {
@@ -60,7 +81,7 @@ public class Pirate {
     }
 
     public String toString() {
-        return "[" + name + ", " + health + "h, " + defence + "d]";
+        return "[" + name + ", " + health + "h, " + defence + "d, " + weapon + "]";
     }
 
 }
