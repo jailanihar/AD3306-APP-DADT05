@@ -109,7 +109,10 @@ public class Map {
                     occupyLocation(currentX, currentY, newX, newY, selectedPirate);
                 }
                 else if(moveLocation instanceof Consumable) {
-
+                    Consumable consumable = (Consumable) moveLocation;
+                    int newHealth = consumable.doHealing(selectedPirate);
+                    selectedPirate.setHealth(newHealth);
+                    occupyLocation(currentX, currentY, newX, newY, selectedPirate);
                 }
             }
         }

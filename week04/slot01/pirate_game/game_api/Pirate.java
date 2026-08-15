@@ -1,5 +1,6 @@
 package pirate_game.game_api;
 
+import pirate_game.game_api.interfaces.Consumable;
 import pirate_game.game_api.interfaces.Placeable;
 import pirate_game.game_api.weapons.Weapon;
 
@@ -43,6 +44,12 @@ public class Pirate implements Placeable {
             if(weapon != null) {
                 int damage = weapon.doDamage(otherPirate);
                 otherPirate.health = otherPirate.health - damage;
+                if(weapon instanceof Consumable) {
+                    Consumable consumable = (Consumable) weapon;
+                    int newHealth = consumable.doHealing(this);
+                    this.setHealth(newHealth);
+                    this.unEquipWeapon();
+                }
             } else {
                 if(otherPirate.defence < 1) {
                     otherPirate.health--;
