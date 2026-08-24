@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "GuessMyColour",
+            "request": "launch",
+            "mainClass": "GuessMyColour",
+            "projectName": "introtogui_1928c03e",
+            "vmArgs": "--enable-native-access=javafx.graphics --module-path /Users/jailanihar/AD3306-APP-DADT05/week05/slot01/introtogui/javafx/lib --add-modules javafx.controls,javafx.fxml,javafx.graphics"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "App",
+            "vmArgs": "--enable-native-access=javafx.graphics --module-path /Users/jailanihar/AD3306-APP-DADT05/week05/slot01/introtogui/javafx/lib --add-modules javafx.controls,javafx.fxml,javafx.graphics"
+        }
+    ]
+}
