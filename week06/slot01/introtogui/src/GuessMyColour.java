@@ -1,13 +1,21 @@
 import java.util.Random;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -39,6 +47,7 @@ public class GuessMyColour extends Application {
         titleLabel.setTextFill(Color.WHITE);
         titleLabel.prefWidthProperty().bind(rootPane.widthProperty());
         titleLabel.setAlignment(Pos.CENTER);
+        titleLabel.setPadding(new Insets(10));
         
         rootPane.setTop(titleLabel);
 
@@ -55,13 +64,143 @@ public class GuessMyColour extends Application {
         centerPane.setAlignment(Pos.CENTER);
         centerPane.setHgap(10);
         centerPane.setVgap(10);
+        centerPane.setPadding(new Insets(10));
 
         rootPane.setCenter(centerPane);
 
         generateGuessColour();
 
+        HBox buttonPane = new HBox();
+
+        Font font = Font.font("Dialog", FontWeight.BOLD, 18);
+        Background redBackground = new Background(
+            new BackgroundFill(Color.RED, null, null)
+        );
+        Background blueBackground = new Background(
+            new BackgroundFill(Color.BLUE, null, null)
+        );
+        Background greenBackground = new Background(
+            new BackgroundFill(Color.GREEN, null, null)
+        );
+
+        Button moreRedButton = new Button("+");
+        moreRedButton.setFont(font);
+        moreRedButton.setBackground(redBackground);
+        moreRedButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                if(answerRed <= 240) {
+                    answerRed = answerRed + 15;
+                    updateAnswerRectangle();
+                }
+            }
+        });
+
+        Button lessRedButton = new Button("-");
+        lessRedButton.setFont(font);
+        lessRedButton.setBackground(redBackground);
+        lessRedButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                if(answerRed >= 15) {
+                    answerRed = answerRed - 15;
+                    updateAnswerRectangle();
+                }
+            }
+        });
+
+        Button moreGreenButton = new Button("+");
+        moreGreenButton.setFont(font);
+        moreGreenButton.setBackground(greenBackground);
+        moreGreenButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                if(answerGreen <= 240) {
+                    answerGreen = answerGreen + 15;
+                    updateAnswerRectangle();
+                }
+            }
+        });
+
+        Button lessGreenButton = new Button("-");
+        lessGreenButton.setFont(font);
+        lessGreenButton.setBackground(greenBackground);
+        lessGreenButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                if(answerGreen >= 15) {
+                    answerGreen = answerGreen - 15;
+                    updateAnswerRectangle();
+                }
+            }
+        });
+
+        Button moreBlueButton = new Button("+");
+        moreBlueButton.setFont(font);
+        moreBlueButton.setBackground(blueBackground);
+        moreBlueButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                if(answerBlue <= 240) {
+                    answerBlue = answerBlue + 15;
+                    updateAnswerRectangle();
+                }
+            }
+        });
+
+        Button lessBlueButton = new Button("-");
+        lessBlueButton.setFont(font);
+        lessBlueButton.setBackground(blueBackground);
+        lessBlueButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent arg0) {
+                if(answerBlue >= 15) {
+                    answerBlue = answerBlue - 15;
+                    updateAnswerRectangle();
+                }
+            }
+        });
+
+        buttonPane.getChildren().addAll(
+            moreRedButton, lessRedButton, moreGreenButton, lessGreenButton,
+            moreBlueButton, lessBlueButton
+        );
+        buttonPane.setAlignment(Pos.CENTER);
+        buttonPane.setSpacing(10);
+        buttonPane.setBackground(new Background(
+            new BackgroundFill(Color.DARKGREY, null, null)
+        ));
+        buttonPane.setPadding(new Insets(10));
+
+        rootPane.setBottom(buttonPane);
+
         Scene root = new Scene(rootPane);
         arg0.setScene(root);
+    }
+
+    public void updateAnswerRectangle() {
+        Color color = Color.rgb(answerRed, answerGreen, answerBlue);
+        answerRectangle.setFill(color);
+        // System.out.println("Guess: " + guessRed + "r " + guessGreen + "g " + guessBlue + "b");
+        // System.out.println("Answer: " + answerRed + "r " + answerGreen + "g " + answerBlue + "b");
+        if(guessRed == answerRed &&
+            guessGreen == answerGreen &&
+            guessBlue == answerBlue
+        ) {
+            String message = "Congratulation! You guessed it!";
+            // System.out.println(message);
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("You did it!");
+            alert.setHeaderText("Play Again?");
+            alert.setContentText(message);
+            // alert.showAndWait();
+            ButtonData buttonData = alert.showAndWait().get().getButtonData();
+            if(buttonData == ButtonData.OK_DONE) {
+                generateGuessColour();
+            } else {
+                System.exit(0);
+            }
+        }
     }
 
     public void generateGuessColour() {
