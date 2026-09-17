@@ -30,3 +30,9 @@
 #spacePressedScorePane {
     -fx-background-color: maroon;
 }
+
+#flightPane {
+    -fx-background-color: lightblue;
+    -fx-pref-width: 600px;
+    -fx-pref-height: 600px;
+}
