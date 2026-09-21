@@ -15,6 +15,7 @@ public class MainController {
     @FXML FlightPaneController flightPaneController;
 
     int countSpacePressed = 0;
+    boolean spacePressed = false;
 
     public void initialize() {
         currentScorePaneController.setScoreTitle("Current Score");
@@ -25,18 +26,23 @@ public class MainController {
 
     public void handleKeyPressed(KeyEvent event) {
         if(event.getCode() == KeyCode.SPACE) {
-            flightPaneController.gameStarted = true;
+            if(spacePressed == false) {
+                flightPaneController.gameStarted = true;
 
-            flightPaneController.birdPaneController.wingUp();
+                flightPaneController.moveBirdUp();
+                flightPaneController.birdPaneController.wingUp();
 
-            countSpacePressed++;
-            spacePressedScorePaneController.setScore(countSpacePressed);
+                countSpacePressed++;
+                spacePressedScorePaneController.setScore(countSpacePressed);
+                spacePressed = true;
+            }
         }
     }
 
     public void handleKeyReleased(KeyEvent event) {
         if(event.getCode() == KeyCode.SPACE) {
             flightPaneController.birdPaneController.wingDown();
+            spacePressed = false;
         }
     }
 
