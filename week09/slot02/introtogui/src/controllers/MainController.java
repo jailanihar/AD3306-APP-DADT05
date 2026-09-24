@@ -30,7 +30,10 @@ public class MainController {
     public void handleKeyPressed(KeyEvent event) {
         if(event.getCode() == KeyCode.SPACE) {
             if(spacePressed == false) {
-                flightPaneController.gameStarted = true;
+                if(flightPaneController.gameStarted == false) {
+                    countSpacePressed = 0;
+                    flightPaneController.gameStarted = true;
+                }
 
                 flightPaneController.moveBirdUp();
                 flightPaneController.birdPaneController.wingUp();

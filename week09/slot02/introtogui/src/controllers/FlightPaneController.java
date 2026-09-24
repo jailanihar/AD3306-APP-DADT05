@@ -76,6 +76,30 @@ public class FlightPaneController {
 
                 birdPane.setLayoutY(nextY);
 
+                for(Rectangle topWall : topWalls) {
+                    double nextX = topWall.getLayoutX() - WALL_SPEED * deltaSeconds;
+                    topWall.setLayoutX(nextX);
+                    if(birdPane.getBoundsInParent().intersects(topWall.getBoundsInParent())) {
+                        gameStarted = false;
+                    }
+                }
+                for(Rectangle bottomWall : bottomWalls) {
+                    double nextX = bottomWall.getLayoutX() - WALL_SPEED * deltaSeconds;
+                    bottomWall.setLayoutX(nextX);
+                    if(birdPane.getBoundsInParent().intersects(bottomWall.getBoundsInParent())) {
+                        gameStarted = false;
+                    }
+                }
+                if(topWalls.getFirst().getBoundsInParent().getMaxX() < 0) {
+                    Rectangle removedTopWall = topWalls.removeFirst();
+                    Rectangle removedBottomWall = bottomWalls.removeFirst();
+                    flightPane.getChildren().removeAll(removedTopWall, removedBottomWall);
+
+                    double newWallX = 
+                        topWalls.getLast().getBoundsInParent().getCenterX() + 250;
+                    generateWall(newWallX);
+                }
+
                 if(gameStarted == false) {
                     previousTime = 0;
                     resetGame();
@@ -115,6 +139,18 @@ public class FlightPaneController {
         if(previousScorePaneController != null) {
             previousScorePaneController.setScore(previousScore);
         }
+
+        for(Rectangle topWall : topWalls) {
+            flightPane.getChildren().remove(topWall);
+        }
+        for(Rectangle bottomWall : bottomWalls) {
+            flightPane.getChildren().remove(bottomWall);
+        }
+        topWalls.clear();
+        bottomWalls.clear();
+        generateWall(250);
+        generateWall(500);
+        generateWall(750);
     }
 
 }

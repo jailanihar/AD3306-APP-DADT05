@@ -1,5 +1,11 @@
+#rootPane {
+    -fx-alignment: top-center;
+    -fx-background-color: black;
+}
+
 #titleLabel {
     -fx-font-size: 32px;
+    -fx-text-fill: white;
 }
 
 .scorePane {
