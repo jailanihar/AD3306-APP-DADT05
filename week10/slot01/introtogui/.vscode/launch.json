@@ -8,6 +8,14 @@
             "type": "java",
             "name": "TodoListApp",
             "request": "launch",
+            "mainClass": "app.TodoListApp",
+            "projectName": "introtogui_2ecc4c17",
+            "vmArgs": "--enable-native-access=javafx.graphics --module-path /Users/jailanihar/AD3306-APP-DADT05/week05/slot01/introtogui/javafx/lib --add-modules javafx.controls,javafx.fxml,javafx.graphics"
+        },
+        {
+            "type": "java",
+            "name": "TodoListApp",
+            "request": "launch",
             "mainClass": "TodoListApp",
             "projectName": "introtogui_2ecc4c17",
             "vmArgs": "--enable-native-access=javafx.graphics --module-path /Users/jailanihar/AD3306-APP-DADT05/week05/slot01/introtogui/javafx/lib --add-modules javafx.controls,javafx.fxml,javafx.graphics"

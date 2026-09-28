@@ -31,3 +31,12 @@ Button {
 .warning {
     -fx-text-fill: RED;
 }
+
+.todo {
+    -fx-pref-width: 400;
+    -fx-wrap-text: true;
+}
+
+.todoButton {
+    -fx-pref-width: 50;
+}
