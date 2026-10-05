@@ -1,0 +1,11 @@
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<HBox
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="controllers.SingleTodoController"
+    stylesheets="@App.css"
+>
+    <Label styleClass="todo" fx:id="todoLabel" />
+    <Button styleClass="todoButton" text="-" onAction="#delete" />
+</HBox>
