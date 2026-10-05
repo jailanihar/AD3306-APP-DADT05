@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 
 import app.TodoListApp;
+import data.TodoListAppRepository;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,12 +21,11 @@ public class LoginController {
 
     @FXML Label errorLabel;
 
-    public void login() throws IOException {
+    public void login() throws Exception {
         String username = usernameTextField.getText();
         String password = passwordTextField.getText();
 
-        if(username.toLowerCase().equals("test") &&
-            password.equals("test")    
+        if(TodoListAppRepository.login(username, password)    
         ) {
             FXMLLoader loader = 
                 new FXMLLoader(getClass().getResource("../views/TodoList.fxml"));

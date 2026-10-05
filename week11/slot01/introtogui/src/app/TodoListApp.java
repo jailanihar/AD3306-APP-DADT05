@@ -1,5 +1,6 @@
 package app;
 
+import data.TodoListAppRepository;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,6 +13,7 @@ public class TodoListApp extends Application {
 
     @Override
     public void start(Stage arg0) throws Exception {
+        TodoListAppRepository.initialise();
         primaryStage = arg0;
         FXMLLoader loader = 
             new FXMLLoader(getClass().getResource("/views/Login.fxml"));
