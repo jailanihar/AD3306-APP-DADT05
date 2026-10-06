@@ -13,10 +13,3 @@ CREATE TABLE todos (
     PRIMARY KEY (id),
     FOREIGN KEY (username) REFERENCES todos_users (username)
 );
-
-INSERT INTO todos_users 
-VALUES ('antah', SHA2('berantah', 256), NOW(), NOW());
-
-MD5 - Not recommended (due to Collision)
-SHA1 - Not recommended (due to Collision)
-BCrypt + Salt

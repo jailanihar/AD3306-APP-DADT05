@@ -31,6 +31,10 @@ public class User {
         todoList.add(new Todo(id, todo));
     }
 
+    public void addTodo(Todo todo) {
+        todoList.add(todo);
+    }
+
     public void removeTodo(Todo todo) {
         todoList.remove(todo);
     }
