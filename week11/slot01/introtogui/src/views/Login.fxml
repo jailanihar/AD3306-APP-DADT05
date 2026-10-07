@@ -11,7 +11,7 @@
         <Label text="Username" />
         <TextField fx:id="usernameTextField" />
     </HBox>
-    <HBox>
+    <HBox fx:id="passwordHBox">
         <Label text="Password" />
         <PasswordField fx:id="passwordTextField" />
     </HBox>

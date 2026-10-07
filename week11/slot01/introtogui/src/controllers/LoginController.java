@@ -12,6 +12,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import models.User;
 
 public class LoginController {
@@ -21,6 +23,8 @@ public class LoginController {
     @FXML CheckBox showPasswordCheckBox;
 
     @FXML Label errorLabel;
+
+    @FXML HBox passwordHBox;
 
     public void login() throws Exception {
         String username = usernameTextField.getText();
@@ -61,7 +65,17 @@ public class LoginController {
     }
 
     public void showPassword() {
-        System.out.println("Show Password Clicked");
+        String password = "";
+        if(showPasswordCheckBox.isSelected()) {
+            password = passwordTextField.getText();
+            passwordTextField = new TextField();
+            passwordHBox.getChildren().set(1, passwordTextField);
+        } else {
+            password = passwordTextField.getText();
+            passwordTextField = new PasswordField();
+            passwordHBox.getChildren().set(1, passwordTextField);
+        }
+        passwordTextField.setText(password);
     }
 
 }
